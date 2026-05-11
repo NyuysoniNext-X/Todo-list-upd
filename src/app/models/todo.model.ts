@@ -3,4 +3,5 @@ export interface Todo {
   text: string;
   createdAt: Date;
   completed: boolean;
+  formattedDate: string;
 }

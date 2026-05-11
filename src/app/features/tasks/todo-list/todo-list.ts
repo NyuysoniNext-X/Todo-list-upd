@@ -2,7 +2,6 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TaskService } from '../../../services/task.service';
-import { Todo } from '../../../models/todo.model';
 
 @Component({
   selector: 'app-todo-list',
@@ -27,5 +26,9 @@ export class TodoList {
 
   deleteTodo(id: number) {
     this.taskService.deleteTodo(id);
+  }
+
+  clearCompleted() {
+    this.taskService.clearCompleted();
   }
 }

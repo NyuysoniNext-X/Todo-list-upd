@@ -1,6 +1,11 @@
 <div class="todo-container">
   <h1>📝 NyuysoniNext-X Todo List</h1>
 
+  <div class="stats">
+    <span>{{ todos().filter(t => !t.completed).length }} tasks remaining</span>
+  </div>
+
+  <!-- Add New Task -->
   <div class="add-section">
     <input
       type="text"
@@ -8,9 +13,10 @@
       placeholder="What needs to be done?"
       (keyup.enter)="addTodo()"
       class="task-input" />
-    <button (click)="addTodo()" class="add-btn">Add Task</button>
+    <button (click)="addTodo()" class="add-btn">Add</button>
   </div>
 
+  <!-- Todo List -->
   <div class="todo-list">
     @if (todos().length === 0) {
       <p class="empty-state">No tasks yet. Add one above! 👆</p>
@@ -20,11 +26,22 @@
       <div class="todo-item" [class.completed]="todo.completed">
 
         <span class="todo-text" (click)="toggleComplete(todo.id)">
-          {{ todo.completed ? '✅' : '⬜' }} {{ todo.text }}
+          {{ todo.completed ? '✅' : '⬜' }}
+          {{ todo.text }}
         </span>
+
+        <span class="todo-date">{{ todo.formattedDate }}</span>
 
         <button class="delete-btn" (click)="deleteTodo(todo.id)">🗑️</button>
       </div>
     }
   </div>
+
+  @if (todos().length > 0) {
+    <div class="footer">
+      <button class="clear-btn" (click)="clearCompleted()">
+        Clear Completed
+      </button>
+    </div>
+  }
 </div>
